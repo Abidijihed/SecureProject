@@ -1,0 +1,68 @@
+{
+  "name": "seure-project",
+  "version": "3.1.0",
+  "author": "Abidi Jihed",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Abidijihed"
+  },
+  "engines": {
+    "node": "14 || 15 || 16",
+    "npm": ">=6"
+  },
+  "dependencies": {
+    "@emotion/cache": "11.7.1",
+    "@emotion/react": "11.8.1",
+    "@emotion/styled": "11.8.1",
+    "@mui/icons-material": "5.4.2",
+    "@mui/material": "5.4.3",
+    "@mui/styled-engine": "5.4.2",
+    "@testing-library/jest-dom": "5.16.2",
+    "@testing-library/react": "12.1.3",
+    "@testing-library/user-event": "13.5.0",
+    "axios": "^0.27.2",
+    "chart.js": "3.4.1",
+    "chroma-js": "2.4.2",
+    "prop-types": "15.8.1",
+    "react": "17.0.2",
+    "react-chartjs-2": "3.0.4",
+    "react-countup": "6.1.1",
+    "react-dom": "17.0.2",
+    "react-flatpickr": "3.10.7",
+    "react-github-btn": "1.2.1",
+    "react-phone-input-2": "^2.15.0",
+    "react-phone-number-input": "^3.2.2",
+    "react-router-dom": "6.2.1",
+    "react-scripts": "5.0.0",
+    "stylis": "4.0.13",
+    "stylis-plugin-rtl": "2.1.1",
+    "uuid": "8.3.2",
+    "web-vitals": "2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --watchAll",
+    "eject": "react-scripts eject",
+    "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
+    "install:peer-deps": "npm install --legacy-peer-deps"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
