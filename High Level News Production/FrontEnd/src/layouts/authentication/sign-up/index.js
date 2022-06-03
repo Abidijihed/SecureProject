@@ -19,6 +19,7 @@ import Separator from "layouts/authentication/components/Separator";
 import curved6 from "assets/images/curved-images/curved14.jpg";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import axios from "axios"
 
 import React, { Component } from 'react'
 
@@ -31,8 +32,87 @@ export default class index extends Component {
            Email:"",
            Password:"",
            confirmPassword:"",
-           PhoneNumber:""
+           PhoneNumber:"",
+           errors: {}
     }
+  }
+  handleValidation() {
+    let { FirstName,LastName, Email, Password, confirmPassword, PhoneNumber } = this.state
+    let errors = {};
+    let formIsValid = true;
+    //Name
+    if (!FirstName) {
+      formIsValid = false;
+      errors.FirstName = "Cannot be empty";
+    }
+
+    if (typeof FirstName !== "undefined") {
+      if (!FirstName.match(/^[a-zA-Z]+$/)) {
+        formIsValid = false;
+        errors.FirstName = "  FirstName Containe Just Only letters UperCase, LowerCase";
+      }
+    }
+    if (!LastName) {
+      formIsValid = false;
+      errors.LastName = "Cannot be empty";
+    }
+    //Email
+    if (!Email) {
+      formIsValid = false;
+      errors.Email = "Cannot be empty";
+    }
+
+    if (typeof Email !== "undefined") {
+      let lastAtPos = Email.lastIndexOf('@');
+      let lastDotPos = Email.lastIndexOf('.');
+
+      if (!(lastAtPos < lastDotPos && lastAtPos > 0 && Email.indexOf('@@') == -1 && lastDotPos > 2 && (Email.length - lastDotPos) > 2)) {
+        formIsValid = false;
+        errors.Email = "Your Email Shoold Write like example@gmail.com";
+      }
+    }
+    //password
+    if (!Password) {
+      formIsValid = false;
+      errors.Password = "Cannot be empty";
+    }
+
+    // if (typeof Password !== "undefined") {
+    //   if (!Password.match(/^(?=.*\d)(?=.*[a-z])[a-zA-Z0-9]{8,}$/)) {
+    //     formIsValid = false;
+    //     errors.Password = "Password shoold Containe letters UperCase, LowerCase, Number and Special Caracter ";
+    //   }
+    // }
+    if (confirmPassword !== Password) {
+      errors.confirmPassword = "confirmPassword shoold Containe the Same like password "
+    }
+    if (PhoneNumber.length < 0) {
+      errors.PhoneNumber = "Cannot be empty";
+    }
+
+
+    this.setState({ errors: errors });
+    return formIsValid;
+  }
+  async contactSubmit(e) {
+    let { FirstName,LastName, Email, Password, confirmPassword, PhoneNumber } = this.state
+    e.preventDefault();
+    if (this.handleValidation()) {
+      // const formData = new FormData()
+        await axios.post("http://localhost:3333/api/user", {
+          FirstName: FirstName,
+          LastName: LastName,
+          Email: Email,
+          Password: Password,
+          confirmPassword: confirmPassword,
+          PhoneNumber: PhoneNumber
+        }).then((res) => {
+          console.log(res)
+        })
+    } else {
+      alert("Form has errors.")
+    }
+
   }
   //handlechange my inputs
   handleChange(e){ 
@@ -61,18 +141,23 @@ export default class index extends Component {
             <SuiBox component="form" role="form">
               <SuiBox mb={2}>
                 <SuiInput placeholder="FirstName"  name="FirstName" onChange={(e)=>this.handleChange(e)}/>
+                <span className="error" style={{color:"red", fontSize:"10px",fontFamily:"cursive"}}>{this.state.errors["FirstName"]}</span>
               </SuiBox>
               <SuiBox mb={2}>
                 <SuiInput placeholder="LastName" name="LastName" onChange={(e)=>this.handleChange(e)}/>
+                <span className="error" style={{color:"red", fontSize:"10px",fontFamily:"cursive"}}>{this.state.errors["LastName"]}</span>
               </SuiBox>
               <SuiBox mb={2}>
                 <SuiInput type="email" placeholder="Email" name="Email" onChange={(e)=>this.handleChange(e)}/>
+                <span className="error" style={{color:"red", fontSize:"10px",fontFamily:"cursive"}}>{this.state.errors["Email"]}</span>
               </SuiBox>
               <SuiBox mb={2}>
                 <SuiInput type="password" placeholder="Password" name="Password" onChange={(e)=>this.handleChange(e)}/>
+                <span className="error" style={{color:"red", fontSize:"10px",fontFamily:"cursive"}}>{this.state.errors["Password"]}</span>
               </SuiBox>
               <SuiBox mb={2}>
                 <SuiInput type="password" placeholder="confirmPassword" name="confirmPassword" onChange={(e)=>this.handleChange(e)}/>
+                <span className="error" style={{color:"red", fontSize:"10px",fontFamily:"cursive"}}>{this.state.errors["confirmPassword"]}</span>
               </SuiBox>
               <SuiBox mb={2}>
                 <PhoneInput
@@ -81,8 +166,7 @@ export default class index extends Component {
             value={PhoneNumber}
             onChange={ PhoneNumber  => this.setState({PhoneNumber })}
          />   
-         {/* value={value}
-         onChange={setValue} */}
+         <span className="error" style={{color:"red", fontSize:"10px",fontFamily:"cursive"}}>{this.state.errors["PhoneNumber"]}</span>
               </SuiBox>
               <SuiBox display="flex" alignItems="center">
                 <Checkbox />
@@ -100,7 +184,7 @@ export default class index extends Component {
                 </SuiTypography>
               </SuiBox>
               <SuiBox mt={4} mb={1}>
-                <SuiButton variant="gradient" color="dark" fullWidth>
+                <SuiButton variant="gradient" color="dark" fullWidth  onClick={(e) => this.contactSubmit(e)} >
                   sign up
                 </SuiButton>
               </SuiBox>

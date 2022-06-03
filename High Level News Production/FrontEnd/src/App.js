@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -15,9 +15,9 @@ import theme from "assets/theme";
 import themeRTL from "assets/theme/theme-rtl";
 
 // RTL plugins
-import rtlPlugin from "stylis-plugin-rtl";
+// import rtlPlugin from "stylis-plugin-rtl";
 import { CacheProvider } from "@emotion/react";
-import createCache from "@emotion/cache";
+// import createCache from "@emotion/cache";
 
 // Soft UI Dashboard React routes
 import routes from "routes";
@@ -32,18 +32,18 @@ export default function App() {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, direction, layout, sidenavColor } = controller;
   const [onMouseEnter, setOnMouseEnter] = useState(false);
-  const [rtlCache, setRtlCache] = useState(null);
+  // const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
 
   // Cache for the rtl
-  useMemo(() => {
-    const cacheRtl = createCache({
-      key: "rtl",
-      stylisPlugins: [rtlPlugin],
-    });
+  // useMemo(() => {
+  //   const cacheRtl = createCache({
+  //     key: "rtl",
+  //     stylisPlugins: [rtlPlugin],
+  //   });
 
-    setRtlCache(cacheRtl);
-  }, []);
+  //   setRtlCache(cacheRtl);
+  // }, []);
 
   // Open sidenav when mouse enter on mini sidenav
   const handleOnMouseEnter = () => {
@@ -84,7 +84,7 @@ export default function App() {
       return null;
     });
   return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
+    <CacheProvider >
       <ThemeProvider theme={themeRTL}>
         <CssBaseline />
         {layout === "Dashboard" && (

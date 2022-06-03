@@ -6,7 +6,8 @@ import Dashboard from "layouts/dashboard";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-
+import AboutUs from "layouts/page/AboutUs";
+import Contact from "layouts/page/Contact";
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
 // import Office from "examples/Icons/Office";
@@ -14,6 +15,7 @@ import Shop from "examples/Icons/Shop";
 import Document from "examples/Icons/Document";
 import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
+import Post from "layouts/page/Post";
 // import CreditCard from "examples/Icons/CreditCard";
 // import Cube from "examples/Icons/Cube";
 
@@ -48,20 +50,20 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    route: "/authentication/sign-in",
+    name: "AboutUs",
+    key: "AboutUs",
+    route: "/layouts/page/AboutUs",
     icon: <Document size="12px" />,
-    component: <SignIn />,
+    component: <AboutUs />,
     noCollapse: true,
   },
   {
     type: "collapse",
-    name: "Sign In",
-    key: "sign-in",
-    route: "/authentication/sign-in",
+    name: "Contact",
+    key: "Contact",
+    route: "/layouts/page/Contact",
     icon: <Document size="12px" />,
-    component: <SignIn />,
+    component: <Contact />,
     noCollapse: true,
   },
   {
@@ -71,6 +73,15 @@ const routes = [
     route: "/profile",
     icon: <CustomerSupport size="12px" />,
     component: <Profile />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Post",
+    key: "Post",
+    route: "/layouts/page/Post",
+    icon: <CustomerSupport size="12px" />,
+    component: <Post />,
     noCollapse: true,
   },
 ];

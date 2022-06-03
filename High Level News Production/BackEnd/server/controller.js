@@ -2,19 +2,6 @@ const {connection} = require('../database-mysql/index.js')
 const crypto = require('crypto')
 
 module.exports ={
-  /** create new user */
-  
-    createUsers: (req,res)=>{
-      console.log(req.body)
-    const query = `INSERT INTO register(firstName,lastName,email,phone) VALUES("${req.body.firstName}","${req.body.lastName}","${req.body.email}","${req.body.phone}")`
-    connection.query(query,(err,result)=>{
-      if(err){
-        res.send(err)
-      }else{
-        res.send(result)
-      }
-    })
-  },
   //get the whole information of player to render them in the Admin page
   getAll: ((req,res)=>{
     const query ='select * from register'
