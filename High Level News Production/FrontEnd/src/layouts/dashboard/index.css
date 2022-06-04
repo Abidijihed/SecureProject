@@ -1,0 +1,49 @@
+.feed-list-item-image {
+    justify-content: center;
+    padding-left: 40px;
+
+    min-width: 450px;
+    max-height: 400px;
+}
+.feed-list-item-title {
+    font-size: 1.8em;   
+    font-family: 'Francois One';
+    /* margin-bottom: 10px; */
+    /* margin-top: -18px; */
+    list-style: none;
+    padding-left: 30px;
+  }
+  .post{
+    background-image: linear-gradient(to left,#2d00f7,#ff0291);
+    /* transform: scale(1.1); */
+    box-shadow: 10px 5px 5px #ff0291;
+    border-radius: 10%;
+    margin-bottom: 4em;
+    width: 500px;
+  }
+  li.feed-list-item {
+    list-style: none;
+    font-weight: bold;
+    font-size: .6em;
+    padding-left: 30px;
+
+}
+li.feed-list-item-byline {
+    list-style: none;
+    font-weight:bolder;
+    font-size: .6em;
+    padding-left: 30px;
+
+}
+
+
+video.VideoInput_video {
+    width: 450px;
+    /* padding-left: 0px; */
+    margin-left: 21px;
+    justify-content: center;
+}
+p.feed-list-item-lede{
+    padding-left: 40px;
+    position: relative;
+}

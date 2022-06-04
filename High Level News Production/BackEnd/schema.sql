@@ -1,6 +1,15 @@
 DROP DATABASE IF EXISTS secure;
 CREATE DATABASE IF NOT EXISTS secure;
 USE secure;
+CREATE TABLE  IF NOT EXISTS chat_messages(
+ id int(6) NOT NULL,
+  room_id int(12) NOT NULL,
+  sender_id int(6) NOT NULL,
+  receiver_id int(6) NOT NULL,
+  message varchar(255) NOT NULL,
+  date datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (id)
+); 
 
 CREATE TABLE IF NOT EXISTS register(
 id INT NOT NULL AUTO_INCREMENT,

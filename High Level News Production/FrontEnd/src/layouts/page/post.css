@@ -1,0 +1,35 @@
+#input[type="file"] {
+	display: none;
+}
+.label{
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.image-upload{
+  font-family: monospace;
+  font-size: 15px;
+  margin: auto;
+  width: 200px;
+	height: 50px;
+  color: black;
+  border-radius: 10px;
+  background-image: linear-gradient(to left,#2d00f7,#ff0291);
+    transform: scale(1.1);
+  text-align: center;
+  cursor: pointer;
+}
+.material-icons{
+  font-size:45px  !important;
+}
+.create-body-textarea {
+  border-radius: 7px;
+  width: 300px;
+  font-size: .5em;
+  display: block;
+  height: 200px;
+  border: groove;
+  padding: 5px;
+  
+}

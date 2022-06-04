@@ -33,7 +33,7 @@ module.exports = {
       err ? res.status(500).send(err):res.status(200).send(result)
     })
   }),
-  Updateuser : (admin , id) => {
+  Updateuser : (register , id) => {
     var passwordHashed = crypto.createHash('sha256').update(register.Password, 'utf8').digest('hex')
        return new Promise((resolve,reject) => {
          connection.query(`UPDATE register SET Firstname=?, Lastname=?, Email=?, Password=?, confirmPassword="${passwordHashed}", PhoneNumber=?, image=?, Zip=?, Address=? WHERE id=?`,

@@ -9,10 +9,10 @@ module.exports={
      
         })
     },
-    post:(admin_id,session)=>{
+    post:(register_id,session)=>{
         return new Promise((resolve,reject)=>{
             connection.query('INSERT INTO sessions (register_id,session,date)Values (?,?,?)',
-            [admin_id,session,Date.now()+1000*3600*24*7],
+            [register_id,session,Date.now()+1000*3600*24*7],
             (err,results)=>{
                 console.log("see",results)
                 return err?reject(err):resolve(results)

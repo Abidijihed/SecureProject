@@ -1,6 +1,15 @@
-
+@import url('https://fonts.googleapis.com/css?family=Francois+One|PT+Serif:400,400i,700,700i');
 span.error {
     color: red !important;
     font-size: 14px;
     font-family:cursive;
+}
+body{
+    /* background-image: url('./banner-img.jpg') !important; */
+}
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1fw4qka-MuiToolbar-root {
+    background-color: aliceblue;
+}
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation0.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft.css-u0k6ft-MuiPaper-root-MuiDrawer-paper {
+    background-color:#c4e0ea;
 }

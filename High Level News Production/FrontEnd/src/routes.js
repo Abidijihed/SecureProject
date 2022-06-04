@@ -77,7 +77,7 @@ const routes = [
   },
   {
     type: "collapse",
-    name: "Post",
+    name: "AddNewPoste",
     key: "Post",
     route: "/layouts/page/Post",
     icon: <CustomerSupport size="12px" />,

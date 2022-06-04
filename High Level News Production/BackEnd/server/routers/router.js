@@ -1,14 +1,15 @@
 const router= require("express").Router()
-const models=require('../models/user')
+const usermodels=require('../models/user')
+// const postemodels=require("../models/poste")
 
 
-router.post('/api/user',models.createUser)
+router.post('/api/user',usermodels.createUser)
 // const controller= require('./controller.js')
 
 // router.post('/createuserse', controller.createUsers)
-// router.get('/getall',controller.getAll)
+// router.get('/api/getall',usermodels.getAll)
 // router.get('/getallpost',controller.getAllpost)
-// router.post('/createnewpost',controller.createPost)
+// router.post('/api/createnewpost',postemodels.createPost)
 // router.post('/login',controller.getUser)
 
 // router.delete('/delete/:id',controller.delete)
