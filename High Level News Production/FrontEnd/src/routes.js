@@ -30,7 +30,7 @@ const routes = [
     noCollapse: true,
   },
   { type: "title", title: "Account Pages", key: "account-pages" },
-  {
+{
     type: "collapse",
     name: "Sign Up",
     key: "sign-up",

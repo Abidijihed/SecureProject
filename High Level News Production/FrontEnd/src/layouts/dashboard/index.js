@@ -85,8 +85,8 @@ axios.get('http://localhost:3333/api/getallpost').then(res=>{
                
     <ul>
               {this.state.data.map((e,index)=>
-              <div className="post">
-              <li className="feed-list-item" key={index}> </li>
+              <div className="post" key={index}>
+              <li className="feed-list-item" > </li>
           <li className="feed-list-item-title" >{e.title}</li>
           <li className="feed-list-item-byline"><span className="feed-list-item-byline-author">{e.namee}</span><br></br>{e.createdAt}</li>
           <SuiBox mb={3}>
@@ -104,8 +104,17 @@ axios.get('http://localhost:3333/api/getallpost').then(res=>{
       height="500px"
       controls
       src={e.video}
-  />}
-         <p className="feed-list-item-lede">{e.body}</p>
+     
+  />
+  
+  }
+           
+ 
+          <p id="mybody">{e.body}</p>
+ 
+
+ 
+        
      
       </div>
     )}
