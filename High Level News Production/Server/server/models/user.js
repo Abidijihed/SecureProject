@@ -48,7 +48,7 @@ module.exports = {
     const query=`SELECT * from register where Email="${req.body.Email}"`
     connection.query(query,(err,results)=>{
       if(err){
-        console.log(err)
+        res.status(500).send(err)
       }else if(results.length>0 && results[0].Password===passwordHashed ){
        var session=utils.RandomString(32)
         middleware.CreateSession(req,res,results[0].id,session)

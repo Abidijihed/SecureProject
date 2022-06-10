@@ -11,10 +11,11 @@ CREATE TABLE  IF NOT EXISTS chat_messages(
   PRIMARY KEY (id)
 ); 
 
-CREATE TABLE IF NOT EXISTS register(
+CREATE TABLE IF NOT EXISTS users(
 id INT NOT NULL AUTO_INCREMENT,
 FirstName VARCHAR(200),
 LastName VARCHAR (200),
+-- creatAt datetime DEFAULT current_timestamp(),
 Email text ,
 Password VARCHAR (200),
 confirmPassword VARCHAR (200),
@@ -24,15 +25,16 @@ country VARCHAR(20),
 State VARCHAR(250),
 Zip VARCHAR(250),
 Address VARCHAR(255),
+-- notifications_Token varchar(255) NOT NULL
 PRIMARY KEY (id)
 );
 CREATE TABLE sessions(
     id int NOT NULL AUTO_INCREMENT,
-   register_id int NOT NULL ,
+   users_id int NOT NULL ,
     session varchar(250) NOT NULL,
     date varchar(250) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (register_id) References register(id)
+    FOREIGN KEY (users_id) References users(id)
 );
 CREATE TABLE IF NOT EXISTS postes(
     id INT NOT NULL AUTO_INCREMENT,
