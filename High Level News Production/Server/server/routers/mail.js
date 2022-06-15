@@ -1,6 +1,4 @@
 const router= require("express").Router()
-const mailsender=require("../models/mail")
-
-router.post("/api/sendmail", mailsender.nodeMail);
-
+const mailmodel=require("../models/mail")
+router.post("/api/send",mailmodel.nodmail)
 module.exports ={mailrouter:router}

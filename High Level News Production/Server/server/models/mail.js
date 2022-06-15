@@ -1,12 +1,31 @@
-const nodemailer = require("nodemailer");
+const nodemailer = require('nodemailer');
+require("dotenv").config();
 
-// function node mail
-
-const nodeMail = async (req, res) => {
-  console.log(req.body);
-  let email = req.body.email;
-  let text = req.body.subject;
-  let description = req.body.description
+const transporter = nodemailer.createTransport({
+  service: "gmail", //replace with your email provider
+ port: 587,
+ host: 'smtp.gmail.com',
+ secure: false,
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD
+  },
+  tls: {
+    rejectUnauthorized: false,
+  }
+});
+transporter.verify(function(error, success) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Server is ready to take our messages");
+  }
+});
+const nodmail = async(req, res, next) => {
+  var name = req.body.name
+  var email = req.body.email
+  var subject = req.body.subject
+  var message = req.body.message
   let html = `
   <!DOCTYPE html>
 <html lang="en">
@@ -21,130 +40,38 @@ const nodeMail = async (req, res) => {
 </head>
 <body>
   <div class="container">
-    <h1 class="brand"><span>${description}</span> Web Design</h1>
+    <h1 class="brand"><span>${subject}</span> Web Design</h1>
     <p> FROM : ${email}</p>
     <div class="wrapper animated bounceInLeft">
     <img src="https://vegibit.com/wp-content/uploads/2017/06/How-To-Send-Email-To-New-Users.png" alt="Trulli" width="500" height="333">
     <img src="pic_trulli.jpg" alt="Trulli" width="500" height="333">
     <img src="pic_trulli.jpg" alt="Trulli" width="500" height="333">
-      <p> ${text}</p>
+      <p> ${message}</p>
   </div>
 </body>
 </html>
   `
-  res.send("well recive");
-  console.log('*****', req.body)
- 
-  // ****************************** NODE MAIL **************************
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    secure: false, // true for 465, false for other ports
-    auth: {
-      user: "secureproject02@hotmail.com", // generated ethereal user
-      pass: "Ji31826832", // generated ethereal password
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
 
-  // send mail with defined transport object
-  
-  let info = await transporter
-    .sendMail({
-      from: `"Contact   👻" <secureproject02@hotmail.com>`, // sender address
-      to: 'secureproject02@gmail.com', // list of receivers
-      subject: subject, // Subject line
-      text: text, // plain text body
-      html: html, // html body
-    })
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  var mail = {
+    from: req.body.email,
+    to: "secureproject02@gmail.com",
+    subject: subject,
+    text: message,
+    html:html
+  }
 
-  //   console.log("Message sent: %s", info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-  // Preview only available when sending through an Ethereal account
-  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-
-  // ****************************** NODE MAIL **************************
-};
-
+  transporter.sendMail(mail, (err, data) => {
+    if (err) {
+      res.json({
+        status: 'fail'
+      })
+    } else {
+      res.json({
+       status: 'success'
+      })
+    }
+  })
+}
 module.exports = {
-  nodeMail,
+  nodmail,
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const path = require('path');
-// const express = require('express');
-// const nodemailer = require('nodemailer');
-// // const buildPath = path.join(__dirname, '..', 'build');
-
- 
-// app.post('/users',(req,res)=>{
- 
-//     var transporter = nodemailer.createTransport({
-//         service: 'gmail',
-//         auth: {
-//           user: 'secureproject02@gmail.com',
-//           pass: 'Ji31826832'
-//         }
-//     });
- 
-//     var mailOptions = {
-//         from: req.body.to,// sender address
-//         to: "secureproject02@gmail.com", // list of receivers
-//         subject: req.body.subject, // Subject line
-//         text:req.body.description,
-//         html: `
-//         <div style="padding:10px;border-style: ridge">
-//         <p>You have a new contact request.</p>
-//         <h3>Contact Details</h3>
-//         <ul>
-//             <li>Email: ${req.body.to}</li>
-//             <li>Subject: ${req.body.subject}</li>
-//             <li>Message: ${req.body.description}</li>
-//         </ul>
-//         `
-//     };
-     
-//     transporter.sendMail(mailOptions, function(error, info){
-//         if (error)
-//         {
-//           res.json({status: true, respMesg: 'Email Sent Successfully'})
-//         } 
-//         else
-//         {
-//           res.json({status: true, respMesg: 'Email Sent Successfully'})
-//         }
-     
-//       });
-// });
-
-// module.exports={
-//     sendMail
-// }

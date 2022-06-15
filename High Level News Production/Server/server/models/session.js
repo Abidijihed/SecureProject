@@ -14,7 +14,6 @@ module.exports={
             connection.query('INSERT INTO sessions (register_id,session,date)Values (?,?,?)',
             [register_id,session,Date.now()+1000*3600*24*7],
             (err,results)=>{
-                console.log("see",results)
                 return err?reject(err):resolve(results)
             }
             )
