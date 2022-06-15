@@ -11,21 +11,17 @@ import SuiTypography from "components/SuiTypography";
 // Soft UI Dashboard React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
-
-// Authentication layout components
-import Footer from "layouts/authentication/components/Footer";
-
-function BasicLayout({ title, description, image, children }) {
+function BasicLayout({ title, description, image }) {
   return (
     <PageLayout>
       <DefaultNavbar />
       <SuiBox
-       width="100%"
-       borderRadius="lg"
-       mb={2}
-       pt={8}
-       pb={20}
-       sx={{
+        width="100%"
+        borderRadius="lg"
+        mb={2}
+        pt={8}
+        pb={20}
+        sx={{
           backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
             image &&
             `${linearGradient(
@@ -52,14 +48,6 @@ function BasicLayout({ title, description, image, children }) {
           </Grid>
         </Grid>
       </SuiBox>
-      <SuiBox mt={{ xs: -26, lg: -24 }} px={1} width="calc(100% - 2rem)" mx="auto">
-        <Grid container spacing={1} justifyContent="center">
-          <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
-            {children}
-          </Grid>
-        </Grid>
-      </SuiBox>
-      <Footer />
     </PageLayout>
   );
 }

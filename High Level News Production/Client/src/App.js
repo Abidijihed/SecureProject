@@ -34,7 +34,6 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   // const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
-
   // Cache for the rtl
   // useMemo(() => {
   //   const cacheRtl = createCache({
@@ -89,16 +88,16 @@ export default function App() {
     <CacheProvider >
       <ThemeProvider theme={themeRTL}>
         <CssBaseline />
-        {layout === "Dashboard" && (
+        {/* {layout === "Dashboard" && (
             <Sidenav
               color={sidenavColor}
               brand={brand}
-              brandName="Soft UI Dashboard"
+              brandName="Secure Project"
               routes={routes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
-        )}
+        )} */}
         <Routes>
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/Dashboard" />} />
@@ -110,10 +109,11 @@ export default function App() {
       <CssBaseline />
       {layout === "dashboard" && (
         <>
+        
           <Sidenav
             color={sidenavColor}
             brand={brand}
-            brandName="Soft UI Dashboard"
+            brandName="Secure Project "
             routes={routes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}

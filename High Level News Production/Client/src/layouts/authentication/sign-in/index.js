@@ -43,7 +43,7 @@ checkUser(e){
    Email:Email,
    Password:Password
    
- },{withCredentials: true}).then(res=>{
+ }).then(res=>{
    console.log(res)
    if(res.data[1]==="secsuss"){
      sessionStorage.setItem(res.data[0],res.data[0])
@@ -69,12 +69,6 @@ checkUser(e){
  })
 }
   render() {
-    var alert = ''
-    if(this.state.alert == 'success'){
-        alert = <div className="alert alert-success" role="alert" >Sign In Successfully ...</div>
-    }else if(this.state.alert == "fail"){
-        alert = <div className="alert alert-danger" role="alert" > Wrong Password Or Username </div>
-    }
     return (
       <CoverLayout
         title="Welcome back"

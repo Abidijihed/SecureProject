@@ -7,7 +7,7 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import AboutUs from "layouts/page/AboutUs";
-import Contact from "layouts/page/Contact";
+import Contact from "layouts/authentication/contact/Contact";
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
 // import Office from "examples/Icons/Office";
@@ -61,7 +61,7 @@ const routes = [
     type: "collapse",
     name: "Contact",
     key: "Contact",
-    route: "/layouts/page/Contact",
+    route: "/authentication/contact",
     icon: <Document size="12px" />,
     component: <Contact />,
     noCollapse: true,

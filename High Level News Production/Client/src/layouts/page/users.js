@@ -8,7 +8,6 @@ export default class  extends Component {
     return (
       
         <div className='Card'>
-        {console.log(this.props)}
         <div className='upper-container'>
         <div className='image-container'>
             <img id='profileimage' src='' alt='' height="" width="" />

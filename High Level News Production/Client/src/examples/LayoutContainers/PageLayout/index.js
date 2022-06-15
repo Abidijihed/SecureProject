@@ -13,7 +13,7 @@ import SuiBox from "components/SuiBox";
 import { useSoftUIController, setLayout } from "context";
 
 function PageLayout({ background, children }) {
-  const [, dispatch] = useSoftUIController();
+  const [page,dispatch] = useSoftUIController();
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -22,9 +22,9 @@ function PageLayout({ background, children }) {
 
   return (
     <SuiBox
-      width="100vw"
+      width="100%"
       height="100%"
-      minHeight="100vh"
+      // minHeight="100vh"
       bgColor={background}
       sx={{ overflowX: "hidden" }}
     >

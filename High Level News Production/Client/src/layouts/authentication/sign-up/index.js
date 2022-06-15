@@ -11,7 +11,7 @@ import SuiInput from "components/SuiInput";
 import SuiButton from "components/SuiButton";
 
 // Authentication layout components
-import BasicLayout from "layouts/authentication/components/BasicLayout";
+import BasicLayout from "layouts/authentication/components/BasicLayout/index";
 import Socials from "layouts/authentication/components/Socials";
 import Separator from "layouts/authentication/components/Separator";
 
@@ -20,7 +20,7 @@ import curved6 from "assets/images/curved-images/curved14.jpg";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import axios from "axios"
-
+import Swal from 'sweetalert2'
 import React, { Component } from 'react'
 
 export default class index extends Component {
@@ -66,7 +66,7 @@ export default class index extends Component {
       let lastAtPos = Email.lastIndexOf('@');
       let lastDotPos = Email.lastIndexOf('.');
 
-      if (!(lastAtPos < lastDotPos && lastAtPos > 0 && Email.indexOf('@@') == -1 && lastDotPos > 2 && (Email.length - lastDotPos) > 2)) {
+      if (!(lastAtPos < lastDotPos && lastAtPos > 0 && Email.indexOf('@@') === -1 && lastDotPos > 2 && (Email.length - lastDotPos) > 2)) {
         formIsValid = false;
         errors.Email = "Your Email Shoold Write like example@gmail.com";
       }
@@ -94,12 +94,13 @@ export default class index extends Component {
     this.setState({ errors: errors });
     return formIsValid;
   }
+ 
   async contactSubmit(e) {
     let { FirstName,LastName, Email, Password, confirmPassword, PhoneNumber } = this.state
-    e.preventDefault();
+    e.preventDefault();  
     if (this.handleValidation()) {
       // const formData = new FormData()
-        await axios.post("http://localhost:3333/api/user", {
+        axios.post("http://localhost:3333/api/user", {
           FirstName: FirstName,
           LastName: LastName,
           Email: Email,
@@ -107,11 +108,18 @@ export default class index extends Component {
           confirmPassword: confirmPassword,
           PhoneNumber: PhoneNumber
         }).then((res) => {
-          console.log(res)
+          console.log(res,'im heareeeeeeee')
         })
     } else {
-      alert("Form has errors.")
+      Swal.fire({
+        position: 'mid',
+        icon: 'error',
+        title: 'Something went wrong! Check your Password or Email',
+        showConfirmButton: false,
+        timer: 1500
+      })
     }
+ 
 
   }
   //handlechange my inputs
