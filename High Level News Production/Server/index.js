@@ -1,6 +1,7 @@
 const app = require("./server/index");
 const port = app.get("port");
 const { createProxyMiddleware } = require('http-proxy-middleware');
+
 app.use(
   '/',
   createProxyMiddleware({
