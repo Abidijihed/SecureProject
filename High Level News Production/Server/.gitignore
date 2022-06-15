@@ -1,6 +1,4 @@
 node_modules
 configSQL.js
 server/node_modules
-server/package-lock.json
-package.json
 package-lock.json
