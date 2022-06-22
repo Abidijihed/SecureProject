@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import curved6 from "assets/images/curved-images/curved14.jpg";
+import curved6 from "assets/images/curved-images/curved0.jpg";
 import "./contact.css"
 import BasicLayout from '../components/BasicLayout/index2';
 import axios  from 'axios';
@@ -22,19 +22,6 @@ export default class Contact extends Component {
         this.state
     )
 }
-// contacus(e){
-//   const {email,name,subject,message}=this.state
-//   axios.post("http://localhost:3333/api/send",{
-//     name: name,   
-// email: email,  
-// subject:subject,
-// message: message
-//    }).then((res)=>{
-//      console.log(res)
-//    }).catch((err)=>{
-//      console.log(err)
-//    })
-//  }
 
   
  onNameChange(event) {
@@ -79,7 +66,7 @@ resetForm(){
       <section className="ftco-section">
         <BasicLayout
         title="Contact Us!"
-        description="Use these forms to contact Us if you need any help or you want to ge some information."
+        description="Use these forms to contact Us if you need any help or you want to get some information."
         image={curved6}
       >
           {/* <DashboardNavbar /> */}

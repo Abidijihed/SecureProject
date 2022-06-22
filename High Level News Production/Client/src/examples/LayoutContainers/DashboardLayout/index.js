@@ -9,7 +9,6 @@ import PropTypes from "prop-types";
 // Soft UI Dashboard React components
 import SuiBox from "components/SuiBox";
 
-// Soft UI Dashboard React context
 import { useSoftUIController, setLayout } from "context";
 
 function DashboardLayout({ children }) {
@@ -26,8 +25,7 @@ function DashboardLayout({ children }) {
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
         position: "relative",
-
-        [breakpoints.up("xl")]: {
+        [breakpoints.up("small")]: {
           marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
           transition: transitions.create(["margin-left", "margin-right"], {
             easing: transitions.easing.easeInOut,

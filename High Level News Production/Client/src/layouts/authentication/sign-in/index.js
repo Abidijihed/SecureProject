@@ -20,8 +20,7 @@ import curved9 from "assets/images/curved-images/curved-6.jpg";
 import React, { Component } from 'react'
 import Swal from 'sweetalert2'
 import axios from 'axios'
-axios.defaults.withCredentials = true
-axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
+
 export default class index extends Component {
   constructor(props){
     super(props)
@@ -46,16 +45,17 @@ checkUser(e){
  }).then(res=>{
    console.log(res)
    if(res.data[1]==="secsuss"){
-     sessionStorage.setItem(res.data[0],res.data[0])
+     sessionStorage.setItem("secsuss",res.data[0])
     Swal.fire({
       position: 'mid',
       icon: 'success',
       title: 'Your Login has been secced',
       showConfirmButton: false,
       timer: 1500
-    })
+    }) 
+    window.location.href="http://localhost:3333/Dashboard"
     
-   }else {
+   }else if(res.data==="somthing went wrong") {
     Swal.fire({
       position: 'mid',
       icon: 'error',
@@ -63,9 +63,17 @@ checkUser(e){
       showConfirmButton: false,
       timer: 1500
     })
+   }else{
+    Swal.fire({
+      position: 'mid',
+      icon: 'error',
+      title: 'user not fund go to Sign-up',
+      showConfirmButton: false,
+      timer: 1500
+    })
    }
- }).catch(err=>{
-   console.log(err)
+ }).catch((err)=>{
+  console.log(err)
  })
 }
   render() {

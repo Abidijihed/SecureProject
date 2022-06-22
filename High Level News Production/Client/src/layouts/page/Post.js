@@ -8,6 +8,7 @@ import curved6 from "../../assets/images/curved-images/curved14.jpg";
 import SuiInput from 'components/SuiInput';
 import SuiButton from 'components/SuiButton';
 import { Card } from '@mui/material';
+
 class Post extends Component {
   constructor(props){
     super(props)
@@ -51,9 +52,9 @@ async contactSubmit(e) {
   // if (this.handleValidation()) {
     const formData = new FormData()
     formData.append("file", imageselected)
-    formData.append('upload_preset', 'xylngbvj')
-    await axios.post('https://api.cloudinary.com/v1_1/dm1xlu8ce/upload', formData).then((res) => {
-     if(res.data.url.slice(res.data.url.length-4)==='.mp4'){
+    formData.append('upload_preset', 'kgiezron')
+    await axios.post('http://api.cloudinary.com/v1_1/dm1xlu8ce/upload', formData).then((res) => {
+     if(res.data.url.slice(res.data.url.length-4) ==='.mp4'){
        dataimage=''
        datavideo=res.data.url
      }else if(res.data.url.slice(res.data.url.length-4)==='.png'||res.data.url.slice(res.data.url.length-4)==='.jpg'){
@@ -92,7 +93,7 @@ async contactSubmit(e) {
             <BasicLayout
             title="ADD NEW POSTES!"
             description="Use these awesome forms to login or create new account in your project for free."
-            image={curved6}
+            // image={curved6}
           >
             <Card>
             <SuiBox pt={6} pb={6} px={1} >

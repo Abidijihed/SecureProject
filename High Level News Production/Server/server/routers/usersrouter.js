@@ -6,6 +6,7 @@ router.get('/api/getall',usermodels.getAll)
 router.post('/api/user',usermodels.createUser)
 router.post('/api/login',usermodels.VerifyUser)
 router.get('/api/session',middleware.VerifySession)
+router.get('/api/logout',usermodels.logout)
 
 
 

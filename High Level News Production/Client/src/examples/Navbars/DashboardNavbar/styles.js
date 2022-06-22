@@ -31,7 +31,7 @@ function navbar(theme, ownerState) {
     display: "grid",
     alignItems: "center",
     borderRadius: borderRadius.xl,
-    paddingTop: pxToRem(8),
+    paddingTop: pxToRem(4),
     paddingBottom: pxToRem(8),
     paddingRight: absolute ? pxToRem(8) : 0,
     paddingLeft: absolute ? pxToRem(16) : 0,
@@ -82,7 +82,7 @@ const navbarRow = ({ breakpoints }, { isMini }) => ({
     width: isMini ? "100%" : "max-content",
   },
 
-  [breakpoints.up("xl")]: {
+  [breakpoints.up("sm")]: {
     justifyContent: "stretch !important",
     width: "max-content !important",
   },

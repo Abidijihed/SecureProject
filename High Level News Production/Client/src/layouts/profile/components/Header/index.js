@@ -25,13 +25,20 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 // Images
 import burceMars from "assets/images/bruce-mars.jpg";
-import curved0 from "assets/images/curved-images/curved0.jpg";
+import curved0 from "assets/images/curved-images/curved7.jpg";
 
 function Header() {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
 
   useEffect(() => {
+    const reloadCount = sessionStorage.getItem('reloadCount');
+    if(reloadCount < 1) {
+      sessionStorage.setItem('reloadCount', String(reloadCount + 1));
+      window.location.reload();
+    } else {
+      sessionStorage.removeItem('reloadCount');
+    }
     // A function that sets the orientation state of the tabs.
     function handleTabsOrientation() {
       return window.innerWidth < breakpoints.values.sm
@@ -54,8 +61,11 @@ function Header() {
   const handleSetTabValue = (event, newValue) => setTabValue(newValue);
 
   return (
+    
     <SuiBox position="relative">
-      <DashboardNavbar absolute light />
+      <DashboardNavbar absolute light backgroundColor="transparent"  />
+      {console.log(DashboardNavbar.backgroundColor)}
+ 
       <SuiBox
         display="flex"
         alignItems="center"

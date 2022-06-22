@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
@@ -8,30 +8,30 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 // Soft UI Dashboard React examples
-import Sidenav from "examples/Sidenav";
+// import Sidenav from "examples/Sidenav";
 
 // Soft UI Dashboard React themes
 import theme from "assets/theme";
-import themeRTL from "assets/theme/theme-rtl";
+// import themeRTL from "assets/theme/theme-rtl";
 
 // RTL plugins
 // import rtlPlugin from "stylis-plugin-rtl";
-import { CacheProvider } from "@emotion/react";
+// import { CacheProvider } from "@emotion/react";
 // import createCache from "@emotion/cache";
 
 // Soft UI Dashboard React routes
 import routes from "routes";
 
 // Soft UI Dashboard React contexts
-import { useSoftUIController, setMiniSidenav } from "context";
+// import { useSoftUIController, setMiniSidenav } from "context";
 
 // Images
-import brand from "assets/images/logo-ct.png";
+// import brand from "assets/images/logo-ct.png";
 
 export default function App() {
-  const [controller, dispatch] = useSoftUIController();
-  const { miniSidenav, direction, layout, sidenavColor } = controller;
-  const [onMouseEnter, setOnMouseEnter] = useState(false);
+  // const [controller, dispatch] = useSoftUIController();
+  // const {direction} = controller;
+  // const [onMouseEnter, setOnMouseEnter] = useState(false);
   // const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
   // Cache for the rtl
@@ -45,24 +45,24 @@ export default function App() {
   // }, []);
 
   // Open sidenav when mouse enter on mini sidenav
-  const handleOnMouseEnter = () => {
-    if (miniSidenav && !onMouseEnter) {
-      setMiniSidenav(dispatch, false);
-      setOnMouseEnter(true);
-    }
-  };
+  // const handleOnMouseEnter = () => {
+  //   if (miniSidenav && !onMouseEnter) {
+  //     setMiniSidenav(dispatch, false);
+  //     setOnMouseEnter(true);
+  //   }
+  // };
 
   // Close sidenav when mouse leave mini sidenav
-  const handleOnMouseLeave = () => {
-    if (onMouseEnter) {
-      setMiniSidenav(dispatch, true);
-      setOnMouseEnter(false);
-    }
-  };
+  // const handleOnMouseLeave = () => {
+  //   if (onMouseEnter) {
+  //     setMiniSidenav(dispatch, true);
+  //     setOnMouseEnter(false);
+  //   }
+  // };
   // Setting the dir attribute for the body element
-  useEffect(() => {
-    document.body.setAttribute("dir", direction);
-  }, [direction]);
+  // useEffect(() => {
+  //   document.body.setAttribute("dir", direction);
+  // }, [direction]);
 
   // Setting page scroll to 0 when changing the route
   useEffect(() => {
@@ -84,42 +84,9 @@ export default function App() {
 
       return null;
     });
-  return direction === "rtl" ? (
-    <CacheProvider >
-      <ThemeProvider theme={themeRTL}>
-        <CssBaseline />
-        {/* {layout === "Dashboard" && (
-            <Sidenav
-              color={sidenavColor}
-              brand={brand}
-              brandName="Secure Project"
-              routes={routes}
-              onMouseEnter={handleOnMouseEnter}
-              onMouseLeave={handleOnMouseLeave}
-            />
-        )} */}
-        <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/Dashboard" />} />
-        </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
+  return  (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-        
-          <Sidenav
-            color={sidenavColor}
-            brand={brand}
-            brandName="Secure Project "
-            routes={routes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-        </>
-      )}
       <Routes>
         {getRoutes(routes)}
         <Route path="*" element={<Navigate to="/Dashboard" />} />

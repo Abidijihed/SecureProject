@@ -16,7 +16,7 @@ import Socials from "layouts/authentication/components/Socials";
 import Separator from "layouts/authentication/components/Separator";
 
 // Images
-import curved6 from "assets/images/curved-images/curved14.jpg";
+import curved0 from "assets/images/curved-images/curved5.jpg";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import axios from "axios"
@@ -107,8 +107,29 @@ export default class index extends Component {
           Password: Password,
           confirmPassword: confirmPassword,
           PhoneNumber: PhoneNumber
-        }).then((res) => {
-          console.log(res,'im heareeeeeeee')
+        }).then((res) => {  
+          // console.log(res.data)
+          if(res.data==="user created"){
+            Swal.fire({
+              position: 'mid',
+              icon: 'success',
+              title: 'Your Login has been secced',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            setTimeout(() => {
+              window.location.href="http://localhost:3333/authentication/sign-in"
+            }, "4000")
+          }else if(res.data==="user exist"){
+            Swal.fire({
+              position: 'mid',
+              icon: 'error',
+              title: 'Something went wrong! Check your Password or Email',
+              showConfirmButton: false,
+              timer: 1500
+            })
+          }
+          
         })
     } else {
       Swal.fire({
@@ -133,7 +154,7 @@ export default class index extends Component {
       <BasicLayout
         title="Welcome!"
         description="Use these awesome forms to login or create new account in your project for free."
-        image={curved6}
+        image={curved0}
       >
         <Card>
           <SuiBox p={3} mb={1} textAlign="center">

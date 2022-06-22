@@ -1,15 +1,14 @@
 const models = require('../models/session')
 module.exports={
-    CreateSession:((req,res,register_id,session)=>{
-        models.post(register_id,session)
+    CreateSession:((req,res,users_id,session)=>{
+        models.post(users_id,session)
         .then((result)=>{
-            console.log(session)
             res.cookie("secure",session,{
                 path: '/',
                 expires: new Date(new Date().getTime() + 86400 * 1000),
                 httpOnly: false,
                 secure: false
-            }).send([session,"secsuss",register_id])
+            }).send([session,"secsuss",users_id])
         })
         .catch((err)=>{
            res.send(err)
@@ -21,9 +20,8 @@ module.exports={
             .then((result)=>{
                 if(result.length>0&&(result[0].date>Date.now())){
                     var registerInfo={
-                        register_id:result[0].register_id,
-                        FirstName:result[0].Firstname,
-                        Email:result[0].Email
+                        users_id:result[0].users_id,
+                        session:result[0].session,
                     }
                     res.status(200).send(registerInfo)
                 }else{
@@ -34,7 +32,7 @@ module.exports={
                 res.status(500).send(err)
             })
         }else{
-            res.status(200).session('session login fail')
+            res.status(200).send('session login fail')
         }
     }
 }
