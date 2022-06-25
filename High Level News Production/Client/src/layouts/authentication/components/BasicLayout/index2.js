@@ -19,8 +19,8 @@ function BasicLayout({ title, description, image }) {
         width="100%"
         borderRadius="lg"
         mb={2}
-        pt={8}
-        pb={20}
+        pt={4}
+        pb={1}
         sx={{
           backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
             image &&

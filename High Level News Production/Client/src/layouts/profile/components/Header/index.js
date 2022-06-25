@@ -63,8 +63,8 @@ function Header() {
   return (
     
     <SuiBox position="relative">
-      <DashboardNavbar absolute light backgroundColor="transparent"  />
-      {console.log(DashboardNavbar.backgroundColor)}
+      {/* <DashboardNavbar absolute light backgroundColor="transparent"  /> */}
+      
  
       <SuiBox
         display="flex"

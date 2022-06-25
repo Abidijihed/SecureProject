@@ -1,0 +1,12 @@
+.css-m6dd0s-MuiPaper-root-MuiAppBar-root .MuiToolbar-root {
+    min-height: auto;
+    background-color: blue;
+    padding: 0.25rem 1rem;
+}
+    body{
+        background-image: url('../../../public/banner-img.jpg') !important;
+        
+    }
+    .MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1fw4qka-MuiToolbar-root {
+        background-color: #0077ff !important;
+    }

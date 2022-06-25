@@ -17,19 +17,34 @@ export default class index extends Component {
       oneuserdata:[1],
       togglle1:false,
       togglle2:false,
-      myvedio:1
+      myvedio:1,
+      news:[]
     }
 }
 
 async componentDidMount(e){
+  
   const reloadCount = sessionStorage.getItem('reloadCount');
-  if(reloadCount < 2) {
+  if(reloadCount < 1) {
     sessionStorage.setItem('reloadCount', String(reloadCount + 1));
     window.location.reload();
   } else {
     sessionStorage.removeItem('reloadCount');
   }
+  
 this.getmyusers()
+}
+
+getNewes(){
+  // fetch("https://newsapi.org/v2/everything?q=Apple&from=2022-06-22&sortBy=popularity&apiKey=87f2419d7b7c4177a2564c743540d731")
+  fetch("https://newsdata.io/api/1/news?apikey=pub_859614c96833ce887b793a790f79e3533a6b&country=cn,eg,fr,lb,us&language=ar,en,fr&category=politics,sports,top")
+ 
+  .then(res => res.json())
+  .then((res) => {
+    console.log(res)
+      this.setState({ news: res.results})
+  })
+  .catch(console.log)
 }
 GetData(){
   axios.get('http://localhost:3333/api/getall').then(res=>{
@@ -40,11 +55,13 @@ GetData(){
   }).catch(error =>{
       console.log(error)
   })
+  this.getNewes()
 }
  getmyusers(){
   axios.get("http://localhost:3333/api/session").then((res)=>{
     console.log(res)
   this.setState({oneuserdata:res.data})
+  sessionStorage.setItem('id',res.data.users_id)
                  })
  
      axios.get('http://localhost:3333/api/getallpost').then(res=>{
@@ -67,7 +84,8 @@ GetData(){
           <DashboardNavbar />
           <SuiBox py={3}>
           <SuiBox mb={3}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
+            <Grid sm={12}>556</Grid>
             <Grid item xs={12} lg={7}>
                
     <ul>
@@ -105,26 +123,66 @@ GetData(){
     )}
     </ul>
             </Grid>
+            <SuiBox py={3}>
             <SuiBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={5}>
+            {/* <Grid item xs={12} lg={5}>
    
                {this.state.usersdata.map((e)=>
      <Users data={e} key={e.id}/>  
 )} 
-                </Grid>
-              </Grid>
-              </SuiBox>
-           {oneuserdata ==="seesion login fail"&& !togglle2 &&  <SuiBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={5}>
-   
-     <img  src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1200px-Image_created_with_a_mobile_phone.png" alt="jihed.jpg"/>
+                </Grid> */}
+                  <Grid item xs={12} lg={7}>
                
-                </Grid>
+               <ul>
+               {this.state.news.map((el,i)=>{
+    return(
+                         <div className="post" key={i}>
+                         <li className="feed-list-item" > </li>
+                     <li className="feed-list-item-title" >{el.title}</li>
+                     <li className="feed-list-item-byline"><span className="feed-list-item-byline-author">{el.description }</span><br></br>{el.pubDate}</li>
+                     <SuiBox mb={3}>
+              <img src={el.image_url}  className="feed-list-item-image" alt=''/>
+              </SuiBox>
+                  
+             
+             
+            <p id="mybody">{el.content}</p>
+            
+           
+            
+                   
+                
+                 </div>
+         )}
+  
+   
+         )}
+               </ul>
+                       </Grid>
               </Grid>
               </SuiBox>
-              }
+              </SuiBox>
+           {/* <SuiBox mb={3}> */}
+          {/* <Grid container spacing={3}> */}
+            {/* <Grid item xs={12} lg={5}>
+   {this.state.news.map((el,i)=>{
+    return(
+    <div key={i}>
+      {console.log(el)}
+  <img  src={el.urlToImage} alt="jihed.jpg"/>
+  <p>{el.description}</p>
+   </div>
+   )}
+  
+   
+   )}
+     
+               
+                </Grid> */}
+              {/* </Grid> */}
+              {/* </SuiBox> */}
+              
               </Grid>
             </SuiBox>
           </SuiBox>

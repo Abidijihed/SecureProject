@@ -26,22 +26,29 @@ function ProfileInfoCard({ title, description, info, social, action }) {
 
   // Convert this form `objectKey` of the object key in to this `object key`
   Object.keys(info).forEach((el) => {
+    const myelement=[]
     if (el.match(/[A-Z\s]+/)) {
       const uppercaseLetter = Array.from(el).find((i) => i.match(/[A-Z]+/));
       const newElement = el.replace(uppercaseLetter, ` ${uppercaseLetter.toLowerCase()}`);
-
-      labels.push(newElement);
-    } else {
-      labels.push(el);
-    }
-  });
+ 
+      myelement.push(newElement);
+    
+      if(myelement.includes('id'&&"password" &&'confirm password')===true){
+        labels.push("firstName","lastName","email","phoneNumber","state","zip","country","address")
+    } 
+  }
+});
 
   // Push the object values into the values array
-  Object.values(info).forEach((el) => values.push(el));
-
+  const array=[]
+  array.push(info)
+  array.forEach((el) => values.push(el.FirstName,el.LastName,el.Email,el.PhoneNumber,el.State,el.Zip,el.country,el.Address))
+console.log(values)
   // Render the card info items
   const renderItems = labels.map((label, key) => (
+  
     <SuiBox key={label} display="flex" py={1} pr={2}>
+    
       <SuiTypography variant="button" fontWeight="bold" textTransform="capitalize">
         {label}: &nbsp;
       </SuiTypography>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 // react-router components
 import { useLocation, Link } from "react-router-dom";
-
+import {Dropdown,Nav,NavDropdown} from 'react-bootstrap';
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
 
@@ -99,16 +99,29 @@ const userLogout=(()=>{
       sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
-        <SuiBox color="inherit" mb={{ xs: 1, md: 1 }} sx={(theme) => navbarRow(theme, { isMini })}>
+        <SuiBox color="inherit" mb={{ xs: 3, md: 0.5 }} sx={(theme) => navbarRow(theme, { isMini })}>
         <Link to="/dashboard">
           <img  src={logo} width="95px" height="70px"/>
           </ Link>
+
+         
         </SuiBox>
+
+        <Nav>
+        <NavDropdown
+          id="nav-dropdown-dark-example"
+          title="قائمة بلديات تونس"
+        >
+          <NavDropdown.Item ><Link to="/layouts/page/SidiBou">سيدي بوسعيد</Link></NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">المرسي</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">الكرم</NavDropdown.Item>
+        </NavDropdown>
+      </Nav>
         {isMini? null : (
           <SuiBox sx={(theme) => navbarRow(theme, { isMini })}>
           {((sessionStorage.secsuss===
              document.cookie.slice(document.cookie.indexOf("secure=")+7,document.length))||document.cookie.slice(document.cookie.indexOf("secure=")+7,document.length).length>50 ) &&   <>
-           <SuiBox color={light ? "white" : "inherit"} pr={5}>
+           <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/layouts/page/Post">
                 <IconButton sx={navbarIconButton}>
                 <AddCircleIcon
@@ -129,7 +142,7 @@ const userLogout=(()=>{
             </>}
             {(!sessionStorage.secsuss && 
              !document.cookie.slice(8,document.cookie.length-1) ) && <>
-            <SuiBox color={light ? "white" : "inherit"} pr={5}>
+            <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/layouts/page/AboutUs">
                 <IconButton sx={navbarIconButton}>
                 <Document
@@ -151,7 +164,7 @@ const userLogout=(()=>{
 
 
 
-           <SuiBox color={light ? "white" : "inherit"} pr={5}>
+           <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/authentication/sign-up">
                 <IconButton sx={navbarIconButton} size="small">
                 <AccountBoxIcon
@@ -171,7 +184,7 @@ const userLogout=(()=>{
             </SuiBox>
 
 
-       <SuiBox color={light ? "white" : "inherit"} pr={5}>
+       <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/authentication/sign-in">
                 <IconButton sx={navbarIconButton} size="small">
                 <LoginIcon
@@ -189,7 +202,7 @@ const userLogout=(()=>{
                 </IconButton>
               </Link>
             </SuiBox>
-            <SuiBox color={light ? "white" : "inherit"} pr={5}>
+            <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/authentication/contact">
                 <IconButton sx={navbarIconButton} size="small">
                 <CustomerSupport
@@ -211,7 +224,7 @@ const userLogout=(()=>{
             { ((sessionStorage.secsuss===
              document.cookie.slice(document.cookie.indexOf("secure=")+7,document.length))||document.cookie.slice(document.cookie.indexOf("secure=")+7,document.length).length>50 ) && 
              <>
-                 <SuiBox color={light ? "white" : "inherit"} pr={5}>
+                 <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/authentication/contact">
                 <IconButton sx={navbarIconButton} size="small">
                 <CustomerSupport
@@ -229,7 +242,7 @@ const userLogout=(()=>{
                 </IconButton>
               </Link>
             </SuiBox>
-             <SuiBox color={light ? "white" : "inherit"} pr={5}>
+             <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/layouts/profile">
                 <IconButton sx={navbarIconButton} size="small">
                 <ManageAccountsIcon
@@ -247,7 +260,7 @@ const userLogout=(()=>{
                 </IconButton>
               </Link>
             </SuiBox>
-            <SuiBox color={light ? "white" : "inherit"} pr={5}>
+            <SuiBox color={light ? "white" : "inherit"} pr={2}>
               <Link to="/layouts/page/AboutUs">
                 <IconButton sx={navbarIconButton}>
                 <Document

@@ -24,8 +24,9 @@ function DashboardLayout({ children }) {
     <SuiBox
       sx={({ breakpoints, transitions, functions: { pxToRem } }) => ({
         p: 3,
+        
         position: "relative",
-        [breakpoints.up("small")]: {
+        [breakpoints.up("none")]: {
           marginLeft: miniSidenav ? pxToRem(120) : pxToRem(274),
           transition: transitions.create(["margin-left", "margin-right"], {
             easing: transitions.easing.easeInOut,

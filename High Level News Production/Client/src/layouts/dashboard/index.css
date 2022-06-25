@@ -2,7 +2,7 @@
     justify-content: center;
     padding-left: 40px;
 
-    min-width: 450px;
+    max-width: 450px;
     max-height: 400px;
 }
 .feed-list-item-title {
@@ -15,7 +15,7 @@
     color: white;
     background-image: linear-gradient(to left,#2d00f7,#ff0291);
     box-shadow: 10px 5px 5px #ff0291;
-    border-radius: 10%;
+    border-radius: 1%;
     margin-bottom: 4em;
     width: 500px;
     height:auto !important;

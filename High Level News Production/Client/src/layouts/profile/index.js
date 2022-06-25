@@ -45,14 +45,13 @@ export default class index extends Component {
     }
   }
   componentDidMount(){
+    const userid=sessionStorage.getItem("id")
       axios.get('http://localhost:3333/api/getall').then(res=>{
-               res.data.map((e)=>(
-                this.setState({
-                  userdata:e
-                })
-               ))
-         
-      
+               res.data.map((e)=>{
+                if(e.id===Number(userid)){
+                  this.setState({userdata:e})
+                }
+               })
          
       }).catch(error =>{
           console.log(error)
@@ -63,6 +62,7 @@ export default class index extends Component {
 
     return (
       <DashboardLayout>
+        {console.log(this.state)}
         <Header />
         <SuiBox mt={5} mb={3}>
           <Grid container spacing={3}>
@@ -93,7 +93,7 @@ export default class index extends Component {
                     color: "instagram",
                   },
                 ]}
-                action={{ route: "", tooltip: "Edit Profile" }}
+                action={{ route: "/layouts/profile/EditProfile", tooltip: "Edit Profile" }}
               />
             </Grid>
             <Grid item xs={12} xl={4}>

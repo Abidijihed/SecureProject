@@ -130,7 +130,7 @@ resetForm(){
                   </div>
                 </div>
                 <div className="col-md-5 d-flex align-items-stretch">
-           
+             
                 </div>
               </div>
               <div className="row">

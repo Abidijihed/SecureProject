@@ -19,6 +19,8 @@ import SpaceShip from "examples/Icons/SpaceShip";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import Post from "layouts/page/Post";
 import Page404 from "layouts/page/Page404";
+import SidiBou from "layouts/page/SidiBou";
+import EditProfile from "layouts/profile/EditProfile";
 var routes
 if((sessionStorage.secsuss===
   document.cookie.slice(7,document.cookie.length))||document.cookie.slice(7,document.cookie.length).length>50 ){
@@ -40,6 +42,24 @@ if((sessionStorage.secsuss===
     route: "/layouts/profile",
     icon: <CustomerSupport size="12px" />,
     component: <Profile />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "EditProfile",
+    key: "EditProfile",
+    route: "/layouts/profile/EditProfile",
+    icon: <CustomerSupport size="12px" />,
+    component: <EditProfile />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "SidiBou",
+    key: "SidiBou",
+    route: "/layouts/page/SidiBou",
+    icon: <CustomerSupport size="12px" />,
+    component: <SidiBou />,
     noCollapse: true,
   },
   {

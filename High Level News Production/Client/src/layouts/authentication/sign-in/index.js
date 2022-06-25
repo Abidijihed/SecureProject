@@ -43,7 +43,7 @@ checkUser(e){
    Password:Password
    
  }).then(res=>{
-   console.log(res)
+   console.log(res,'yoyoyoyoyo')
    if(res.data[1]==="secsuss"){
      sessionStorage.setItem("secsuss",res.data[0])
     Swal.fire({

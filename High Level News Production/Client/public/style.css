@@ -1,24 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Francois+One|PT+Serif:400,400i,700,700i');
 body{
     background-image: url('./banner-img.jpg') !important;
+ 
 }
+/* .MuiBox-root.css-1clps8s{
+    background-image: url('./banner-img.jpg') !important;
+        
+} */
 span.error {
     color: red !important;
     font-size: 14px;
     font-family:cursive;
 }
-
-.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1fw4qka-MuiToolbar-root {
-    background-color: #0077ff;
+a#nav-dropdown-dark-example {
+    color:white !important;
 }
+.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1fw4qka-MuiToolbar-root {
+    background-color: #0077ff !important;
+}
+
 .MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation0.MuiDrawer-paper.MuiDrawer-paperAnchorLeft.MuiDrawer-paperAnchorDockedLeft.css-u0k6ft-MuiPaper-root-MuiDrawer-paper {
     background-color:#c4e0ea;
 }
 
 .css-m6dd0s-MuiPaper-root-MuiAppBar-root .MuiToolbar-root {
     min-height: auto;
-    padding: 1.5rem 1rem !important ;
-}
-.MuiBox-root.css-8cgs35 {
-    margin-left: 0;
+    background-color: #0077ff !important;
+    padding: 0.5rem 1rem !important ;
 }
