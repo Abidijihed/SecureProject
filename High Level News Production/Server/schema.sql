@@ -25,7 +25,6 @@ country VARCHAR(20),
 State VARCHAR(250),
 Zip VARCHAR(250),
 Address VARCHAR(255),
--- notifications_Token varchar(255) NOT NULL
 PRIMARY KEY (id)
 );
 CREATE TABLE sessions(

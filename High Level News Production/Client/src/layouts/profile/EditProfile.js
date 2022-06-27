@@ -12,18 +12,18 @@ export default class Profile extends Component {
         super(props)
         this.state = {
             imageselected:[],
-            Firstname:"" ,
-            Lastname:"",
-            email:"",
+            FirstName:"" ,
+            LastName:"",
+            Email:"",
+            phone:"",
             Address:"",
-            phone: "",
-            password:"",
+            Password:"",
             country:"",
             Zip:"",
             image:"",
-            Oldpassword:"",
-            confirmpassword:"",
-            mypassword:"",
+            OldPassword:"",
+            confirmPassword:"",
+            myPassword:"",
             mycountry:"",
             errors:{}
         }
@@ -31,66 +31,66 @@ export default class Profile extends Component {
     }
   
     handleValidation(){
-        let{Firstname,Lastname,email,password,confirmpassword,Oldpassword,mypassword,country}= this.state
+        let{FirstName,LastName,Email,Password,confirmPassword,OldPassword,myPassword,country}= this.state
         let errors = {};
         let formIsValid = true;
         //Name
-        if(!Firstname){
+        if(!FirstName){
          
            formIsValid = false;
-           errors.Firstname = "Cannot be empty";
+           errors.FirstName = "Cannot be empty";
         }
     
-        if(typeof Firstname !== "undefined"){
-           if(!Firstname.match(/^[a-zA-Z]+$/)){
+        if(typeof FirstName !== "undefined"){
+           if(!FirstName.match(/^[a-zA-Z]+$/)){
               formIsValid = false;
-              errors.Firstname = "  Firstname Containe Just Only letters UperCase, LowerCase";
+              errors.FirstName = "  FirstName Containe Just Only letters UperCase, LowerCase";
            }        
         }
-        if(!Lastname){
+        if(!LastName){
             formIsValid = false;
-            errors.Lastname = "Cannot be empty";
+            errors.LastName = "Cannot be empty";
          }
      
-         if(typeof Lastname !== "undefined"){
-            if(!Lastname.match(/^[a-zA-Z]+$/)){
+         if(typeof LastName !== "undefined"){
+            if(!LastName.match(/^[a-zA-Z]+$/)){
                formIsValid = false;
-               errors.Lastname = "  Lastname Containe Just Only letters UperCase, LowerCase";
+               errors.LastName = "  LastName Containe Just Only letters UperCase, LowerCase";
             }        
          }
      
     
         //Email
-        if(!email){
+        if(!Email){
            formIsValid = false;
-           errors.email = "Cannot be empty";
+           errors.Email = "Cannot be empty";
         }
     
-        if(typeof email !== "undefined"){
-           let lastAtPos = email.lastIndexOf('@');
-           let lastDotPos = email.lastIndexOf('.');
+        if(typeof Email !== "undefined"){
+           let lastAtPos = Email.lastIndexOf('@');
+           let lastDotPos = Email.lastIndexOf('.');
     
-           if (!(lastAtPos < lastDotPos && lastAtPos > 0 && email.indexOf('@@') == -1 && lastDotPos > 2 && (email.length - lastDotPos) > 2)) {
+           if (!(lastAtPos < lastDotPos && lastAtPos > 0 && Email.indexOf('@@') == -1 && lastDotPos > 2 && (Email.length - lastDotPos) > 2)) {
               formIsValid = false;
-              errors.email = "Email is not valid Your Email Shoold Write like example@gmail.com";
+              errors.Email = "Email is not valid Your Email Shoold Write like example@gmail.com";
             }
        }  
-    //password
-    if(!password){
+    //Password
+    if(!Password){
       formIsValid = false;
-      errors.password = "Cannot be empty";
+      errors.Password = "Cannot be empty";
     }
     
-    if(typeof password !== "undefined"){
-      if(!password.match(/^(?=.*\d)(?=.*[a-z])[a-zA-Z0-9]{8,}$/)){
-         formIsValid = false;
-         errors.password = "password shoold Containe letters UperCase, LowerCase, Number and Special Caracter ";
-      }        
-    }
-     if(password!==mypassword && password!==confirmpassword){
+    // if(typeof Password !== "undefined"){
+    //   if(!Password.match(/^(?=.*\d)(?=.*[a-z])[a-zA-Z0-9]{8,}$/)){
+    //      formIsValid = false;
+    //      errors.Password = "Password shoold Containe letters UperCase, LowerCase, Number and Special Caracter ";
+    //   }        
+    // }
+     if(Password!==myPassword && Password!==confirmPassword){
             formIsValid=false
-            errors.confirmpassword = "Repeat password shoold Containe the Same like password "
-        }else if(password!==mypassword  && password===confirmpassword ){
+            errors.confirmPassword = "Repeat Password shoold Containe the Same like Password "
+        }else if(Password!==myPassword  && Password===confirmPassword ){
             formIsValid = true;
         }
       if(country.length<0){
@@ -102,38 +102,40 @@ export default class Profile extends Component {
        return formIsValid;
     }
     async componentDidMount(){
-        const {Firstname,Lastname,email,password,country,Zip,Address,phone,mypassword}= this.state
-      await  axios.get('http://localhost:3333/api/admin/'+1).then((res)=>{
-            if(Firstname.length===0||Lastname.length===0||email.length===0||password.length===0||country.length===0 ||Address.length===0||Zip.length===0||Address.length===0||phone==="undefinde" ){
+        const {FirstName,LastName,Email,Password,country,Zip,Address,phone,myPassword}= this.state
+       const userid= sessionStorage.getItem('id')
+      await  axios.get('http://localhost:3333/api/getoneuser/'+userid).then((res)=>{
+            if(FirstName.length===0||LastName.length===0||Email.length===0||Password.length===0||country.length===0 ||Address.length===0||Zip.length===0||Address.length===0||phone==="undefinde" ){
                 this.setState({
-                    Firstname:res.data.Firstname,
-                    Lastname:res.data.Lastname,
-                    email:res.data.email,
-                    password:res.data.password,
+                    FirstName:res.data.FirstName,
+                    LastName:res.data.LastName,
+                    Email:res.data.Email,
+                    Password:res.data.Password,
                     country:res.data.country,
                     Zip:res.data.Zip,
                     Address:res.data.Address,
-                   numberPhone:res.data.numberPhone,
+                    PhoneNumber:res.data.PhoneNumber,
                    image:res.data.image,
-                   mypassword:res.data.password
+                   myPassword:res.data.Password
                 })
             }
            
         })
     }
     async contactSubmit(e){
-      const   id=1
-        const {Firstname,Lastname,email,password,country,Zip,imageselected,Address,image,phone}= this.state
+        const userid= sessionStorage.getItem('id')
+
+        const {FirstName,LastName,Email,Password,country,Zip,imageselected,Address,image,phone}= this.state
           e.preventDefault(e);
           if(this.handleValidation()){
             if(image.length!==0 && imageselected.length===0 ){
-                axios.patch("http://localhost:3333/api/getall/"+id,{
-                    Firstname:Firstname,
-                    Lastname:Lastname,
-                    email:email,
+                axios.patch("http://localhost:3333/api/updateuser/"+userid,{
+                    FirstName:FirstName,
+                    LastName:LastName,
+                    Email:Email,
                     Address:Address,
-                    numberPhone:phone,
-                    password:password,
+                    PhoneNumber:phone,
+                    Password:Password,
                     image:image,
                     country:country,
                     Zip:Zip
@@ -144,15 +146,15 @@ export default class Profile extends Component {
             }else if(imageselected){
             const formData = new FormData()
             formData.append("file", imageselected)
-            formData.append('upload_preset', 'qczp9fgd')
+            formData.append('upload_preset', 'kgiezron')
            await axios.post('https://api.cloudinary.com/v1_1/dm1xlu8ce/image/upload', formData).then((res) => {
-            axios.patch("http://localhost:3333/api/getall/"+id,{
-              Firstname:Firstname,
-              Lastname:Lastname,
-              email:email,
+            axios.patch("http://localhost:3333/api/updateuser/"+userid,{
+              FirstName:FirstName,
+              LastName:LastName,
+              Email:Email,
               Address:Address,
-              numberPhone:phone,
-              password:password,
+              PhoneNumber:phone,
+              Password:Password,
               image:res.data.url,
               country:country,
               Zip:Zip
@@ -177,7 +179,7 @@ export default class Profile extends Component {
         )
     }
     render() {
-        const {Firstname,Lastname,errors,email,mycountry,country,Zip,imageselected,numberPhone,Address,image,phone}= this.state
+        const {FirstName,LastName,errors,Email,mycountry,country,Zip,imageselected,PhoneNumber,Address,image,phone}= this.state
         return (
             <DashboardLayout >
             <DashboardNavbar />
@@ -189,15 +191,15 @@ export default class Profile extends Component {
                 <br />
                 <br />
                 <br /> */}
-            <div className="container">
+            <div className="container" id='yoyocontainer'>
                 <div className="row justify-content-center">
                     <div className="col-12 col-lg-10 col-xl-8 mx-auto">
-                        <h2 className="h3 mb-4 page-title">Settings</h2>
+                        {/* <h2 className="h3 mb-4 page-title">Settings</h2> */}
                         <div className="my-4">
                             <ul className="nav nav-tabs mb-4" id="myTab" role="tablist">
 
                                 <li className="nav-item">
-                                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" >Profile</a>
+                                    <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" >Edit your Profile</a>
                                 </li>
                             </ul>
                             <form>
@@ -218,7 +220,7 @@ export default class Profile extends Component {
                                     <div className="col">
                                         <div className="row align-items-center">
                                             <div className="col-md-7">
-                                                <h4 className="mb-1">{Firstname}, {Lastname}</h4>
+                                                <h4 className="mb-1">{FirstName}, {LastName}</h4>
                                               
                                             </div>
                                         </div>
@@ -230,10 +232,10 @@ export default class Profile extends Component {
                                             </p>
                                             </div>
                                             <div className="col">
-                                            <p className="small mb-0 text-muted">{email}</p>
+                                            <p className="small mb-0 text-muted">{Email}</p>
                                                 <p className="small mb-0 text-muted">{mycountry}</p>
                                                 <p className="small mb-0 text-muted">{Address}</p>
-                                                <p className="small mb-0 text-muted">{numberPhone}</p>
+                                                <p className="small mb-0 text-muted">{PhoneNumber}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -241,20 +243,20 @@ export default class Profile extends Component {
                                 <hr className="my-4" />
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="firstname">Firstname</label>
-                                        <input type="text" name="Firstname" className="form-control" placeholder="Your Firstname" onChange={(e)=>this.handleChange(e)} />
-                                        <span className="error">{errors["Firstname"]}</span>
+                                        <label htmlFor="FirstName">FirstName</label>
+                                        <input type="text" name="FirstName" className="form-control" placeholder="Your FirstName" onChange={(e)=>this.handleChange(e)} />
+                                        <span className="error">{errors["FirstName"]}</span>
                                     </div>
                                     <div className="form-group col-md-6">
-                                        <label htmlFor="Lastname">Lastname</label>
-                                        <input type="text" name="Lastname" className="form-control" placeholder="Your Lastname" onChange={(e)=>this.handleChange(e)} />
-                                        <span className="error">{errors["Lastname"]}</span>
+                                        <label htmlFor="LastName">LastName</label>
+                                        <input type="text" name="LastName" className="form-control" placeholder="Your LastName" onChange={(e)=>this.handleChange(e)} />
+                                        <span className="error">{errors["LastName"]}</span>
                         </div>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="inputEmail4">Email</label>
-                                    <input type="email" className="form-control" name="email" placeholder="ex brown@asher.me" onChange={(e)=>this.handleChange(e)}/>
-                                    <span className="error">{errors["email"]}</span>
+                                    <input type="Email" className="form-control" name="Email" placeholder="ex brown@asher.me" onChange={(e)=>this.handleChange(e)}/>
+                                    <span className="error">{errors["Email"]}</span>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="inputAddress5">Address</label>
@@ -280,28 +282,28 @@ export default class Profile extends Component {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label htmlFor="inputPassword4">Old Password</label>
-                                            <input type="password" className="form-control" name="Oldpassword" onChange={(e)=>this.handleChange(e)}/>
-                                            <span className="error">{this.state.errors["Oldpassword"]}</span>
+                                            <input type="Password" className="form-control" name="OldPassword" onChange={(e)=>this.handleChange(e)}/>
+                                            <span className="error">{this.state.errors["OldPassword"]}</span>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="inputPassword5">New Password</label>
-                                            <input type="password" className="form-control" name="password" onChange={(e)=>this.handleChange(e)}/>
-                                            <span className="error">{this.state.errors["password"]}</span>
+                                            <input type="Password" className="form-control" name="Password" onChange={(e)=>this.handleChange(e)}/>
+                                            <span className="error">{this.state.errors["Password"]}</span>
                                         </div>
                                         <div className="form-group">
                                             <label htmlFor="inputPassword6">Confirm Password</label>
-                                            <input type="password" className="form-control" name="confirmpassword" onChange={(e)=>this.handleChange(e)} />
-                                            <span className="error">{this.state.errors["confirmpassword"]}</span>
+                                            <input type="Password" className="form-control" name="confirmPassword" onChange={(e)=>this.handleChange(e)} />
+                                            <span className="error">{this.state.errors["confirmPassword"]}</span>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <p className="mb-2">Password requirements</p>
-                                        <p className="small text-muted mb-2">To create a new password, you have to meet all of the following requirements:</p>
+                                        <p className="small text-muted mb-2">To create a new Password, you have to meet all of the following requirements:</p>
                                         <ul className="small text-muted pl-4 mb-0">
                                             <li>Minimum 8 character</li>
                                             <li>At least one special character</li>
                                             <li>At least one number</li>
-                                            <li>Can’t be the same as a previous password</li>
+                                            <li>Can’t be the same as a previous Password</li>
                                         </ul>
                                     </div>
                                 </div>

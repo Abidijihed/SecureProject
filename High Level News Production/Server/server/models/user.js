@@ -42,14 +42,17 @@ module.exports = {
       err ? res.status(500).send(err):res.status(200).send(result)
     })
   }),
-  Updateuser : (users , id) => {
-    var passwordHashed = crypto.createHash('sha256').update(users.Password, 'utf8').digest('hex')
-       return new Promise((resolve,reject) => {
-         connection.query(`UPDATE users SET Firstname=?, Lastname=?, Email=?, Password=?, confirmPassword="${passwordHashed}", PhoneNumber=?, image=?, Zip=?, Address=? WHERE id=?`,
-       [users.Firstname,users.Lastname, users.Email,users.Password,passwordHashed,users.PhoneNumber,users.image,users.Zip,users.Address,id],(err,results)=>{
-           err ? reject(err) : resolve(results)
-         })
-       })
+  Updateuser : (req,res,next) => {
+    var id=req.params.id
+    var updadata=req.body
+    var passwordHashed = crypto.createHash('sha256').update(req.body.Password, 'utf8').digest('hex')
+         const query=`UPDATE users SET (Firstname=${req.body.Firstname}, Lastname=${req.body.Lastname}, Email=${req.body.Email}, Password=${passwordHashed}, PhoneNumber=${req.body.PhoneNumber}, image=${req.body.image}, Zip=${req.body.Zip}, Address=${req.body.Address}) WHERE id=${req.params.id}`
+     connection.query(query,(err,result)=>{
+         err ?res.status(500).send(err,'im the error'):res.status(200).send(result)
+     })
+          
+         
+       
   },
    VerifyUser :(req,res)=>{
     var passwordHashed = crypto.createHash('sha256').update(req.body.Password, 'utf8').digest('hex')

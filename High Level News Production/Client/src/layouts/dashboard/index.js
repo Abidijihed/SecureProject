@@ -36,12 +36,12 @@ this.getmyusers()
 }
 
 getNewes(){
-  // fetch("https://newsapi.org/v2/everything?q=Apple&from=2022-06-22&sortBy=popularity&apiKey=87f2419d7b7c4177a2564c743540d731")
+  // fetch("https://api.openweathermap.org/data/2.5/weather?lat=36.641741&lon=10.091657&appid=4968c8fe46b552d2e80121a17ee48a56")
   fetch("https://newsdata.io/api/1/news?apikey=pub_859614c96833ce887b793a790f79e3533a6b&country=cn,eg,fr,lb,us&language=ar,en,fr&category=politics,sports,top")
  
   .then(res => res.json())
   .then((res) => {
-    console.log(res)
+    console.log(res,'hello')
       this.setState({ news: res.results})
   })
   .catch(console.log)
